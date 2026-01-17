@@ -1,0 +1,38 @@
+{
+  "name": "midi_to_wav_fluidsynth",
+  "description": "Renders a MIDI file to WAV using FluidSynth and a SoundFont (.sf2). Requires fluidsynth installed on the system.",
+  "parameters": {
+    "type": "object",
+    "required": ["mid_path", "soundfont_path", "out_wav_path"],
+    "properties": {
+      "mid_path": {
+        "type": "string",
+        "description": "Input MIDI file path, e.g. './out.mid'."
+      },
+      "soundfont_path": {
+        "type": "string",
+        "description": "Path to .sf2 SoundFont file (GM or chiptune-oriented)."
+      },
+      "out_wav_path": {
+        "type": "string",
+        "description": "Output WAV file path, e.g. './out.wav'."
+      },
+      "sample_rate": {
+        "type": "integer",
+        "default": 44100,
+        "minimum": 8000,
+        "maximum": 192000
+      },
+      "gain": {
+        "type": "number",
+        "default": 0.7,
+        "minimum": 0.0,
+        "maximum": 5.0
+      },
+      "overwrite": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

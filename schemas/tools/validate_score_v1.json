@@ -1,0 +1,23 @@
+{
+  "name": "validate_score_v1",
+  "description": "Validates a score.v1 JSON against schema rules and additional hard constraints (timing bounds, monophony per track, pitch/velocity ranges). Returns violations with precise locations.",
+  "parameters": {
+    "type": "object",
+    "required": ["score_json"],
+    "properties": {
+      "score_json": {
+        "type": "object",
+        "description": "The score object following score.v1 contract."
+      },
+      "constraints_json": {
+        "type": "object",
+        "description": "Optional constraints.v1 object. If provided, enforce required_tracks, pitch_ranges, max_events_per_bar, velocity_levels, etc."
+      },
+      "strict": {
+        "type": "boolean",
+        "description": "If true, treats warnings as errors.",
+        "default": true
+      }
+    }
+  }
+}

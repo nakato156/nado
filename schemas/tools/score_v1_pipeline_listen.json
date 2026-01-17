@@ -1,0 +1,47 @@
+{
+  "name": "score_v1_pipeline_listen",
+  "description": "End-to-end pipeline: validates score.v1, writes MIDI, renders WAV with FluidSynth, and plays it. Intended for rapid iteration with tool-calling.",
+  "parameters": {
+    "type": "object",
+    "required": ["score_json", "soundfont_path"],
+    "properties": {
+      "score_json": {
+        "type": "object",
+        "description": "The score object following score.v1 contract."
+      },
+      "soundfont_path": {
+        "type": "string",
+        "description": "Path to .sf2 SoundFont file."
+      },
+      "out_mid_path": {
+        "type": "string",
+        "default": "./out.mid"
+      },
+      "out_wav_path": {
+        "type": "string",
+        "default": "./out.wav"
+      },
+      "sample_rate": {
+        "type": "integer",
+        "default": 44100
+      },
+      "backend": {
+        "type": "string",
+        "enum": ["auto", "ffplay", "aplay", "paplay", "vlc"],
+        "default": "auto"
+      },
+      "blocking": {
+        "type": "boolean",
+        "default": false
+      },
+      "constraints_json": {
+        "type": "object",
+        "description": "Optional constraints.v1 to enforce before exporting."
+      },
+      "strict": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

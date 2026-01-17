@@ -1,0 +1,31 @@
+{
+  "name": "play_audio",
+  "description": "Plays an audio file on the local machine using an available backend (ffplay/aplay/paplay).",
+  "parameters": {
+    "type": "object",
+    "required": ["audio_path"],
+    "properties": {
+      "audio_path": {
+        "type": "string",
+        "description": "Path to WAV/MP3/OGG file."
+      },
+      "backend": {
+        "type": "string",
+        "description": "Preferred backend. Executor should fallback if not available.",
+        "enum": ["auto", "ffplay", "aplay", "paplay", "vlc"],
+        "default": "auto"
+      },
+      "blocking": {
+        "type": "boolean",
+        "description": "If true, waits until playback finishes.",
+        "default": false
+      },
+      "volume": {
+        "type": "number",
+        "description": "Optional volume scalar if backend supports it.",
+        "minimum": 0.0,
+        "maximum": 2.0
+      }
+    }
+  }
+}

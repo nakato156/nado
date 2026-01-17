@@ -1,0 +1,27 @@
+{
+  "name": "score_v1_to_midi",
+  "description": "Converts a score.v1 JSON into a MIDI file. Uses tracks[].program as MIDI instrument program. Writes output to out_mid_path.",
+  "parameters": {
+    "type": "object",
+    "required": ["score_json", "out_mid_path"],
+    "properties": {
+      "score_json": {
+        "type": "object",
+        "description": "The score object following score.v1 contract."
+      },
+      "out_mid_path": {
+        "type": "string",
+        "description": "Path to write the MIDI file, e.g. './out.mid'."
+      },
+      "overwrite": {
+        "type": "boolean",
+        "default": true
+      },
+      "midi_channel_map": {
+        "type": "object",
+        "description": "Optional mapping track_id -> MIDI channel [0..15]. If omitted, executor assigns sequential channels.",
+        "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 15 }
+      }
+    }
+  }
+}
