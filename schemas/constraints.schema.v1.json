@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/constraints.schema.v1.json",
+  "title": "Constraints Schema v1",
+  "type": "object",
+  "required": ["schema_version", "hard", "soft"],
+  "properties": {
+    "schema_version": { "const": "constraints.v1" },
+
+    "hard": {
+      "type": "object",
+      "required": ["required_tracks", "max_events_per_bar", "pitch_ranges", "monophonic_tracks"],
+      "properties": {
+        "required_tracks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "monophonic_tracks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "max_events_per_bar": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pitch_ranges": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["min", "max"],
+            "properties": {
+              "min": { "type": "integer", "minimum": 0, "maximum": 127 },
+              "max": { "type": "integer", "minimum": 0, "maximum": 127 }
+            }
+          }
+        },
+        "velocity_levels": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1, "maximum": 127 },
+          "minItems": 2
+        },
+        "forbid_overflow": { "type": "boolean", "default": true }
+      }
+    },
+
+    "soft": {
+      "type": "object",
+      "properties": {
+        "target_density_per_bar": { "type": "number", "minimum": 0.0 },
+        "target_repetition": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "prefer_step_grid": { "type": "integer", "minimum": 1 },
+        "style_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

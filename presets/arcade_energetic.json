@@ -1,0 +1,39 @@
+{
+  "name": "arcade_energetic",
+  "description": "Estilo arcade energético - más libertad creativa",
+  "constraints": {
+    "schema_version": "constraints.v1",
+    "hard": {
+      "required_tracks": ["lead", "bass", "drums"],
+      "monophonic_tracks": ["lead", "bass"],
+      "max_events_per_bar": 48,
+      "pitch_ranges": {
+        "lead": {"min": 48, "max": 108},
+        "harmony": {"min": 36, "max": 96},
+        "bass": {"min": 24, "max": 60},
+        "drums": {"min": 0, "max": 127}
+      },
+      "velocity_levels": [50, 80, 100, 127],
+      "forbid_overflow": true
+    },
+    "soft": {
+      "target_density_per_bar": 12.0,
+      "target_repetition": 0.25,
+      "prefer_step_grid": 2,
+      "style_tags": ["arcade", "energetic", "fast", "action"]
+    }
+  },
+  "tracks": [
+    {"id": "lead", "role": "melody", "monophonic": true, "program": 81},
+    {"id": "harmony", "role": "harmony", "monophonic": false, "program": 81},
+    {"id": "bass", "role": "bass", "monophonic": true, "program": 38},
+    {"id": "drums", "role": "drums", "monophonic": true, "program": 0}
+  ],
+  "composition": {
+    "default_tempo": 160,
+    "default_key": "Am",
+    "default_time_signature": "4/4",
+    "steps_per_beat": 4,
+    "typical_length_bars": 32
+  }
+}

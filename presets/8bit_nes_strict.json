@@ -1,0 +1,45 @@
+{
+  "name": "8bit_nes_strict",
+  "description": "Estilo estricto NES - 4 canales, monofónicos, velocidades limitadas",
+  "constraints": {
+    "schema_version": "constraints.v1",
+    "hard": {
+      "required_tracks": ["pulse1", "triangle", "noise"],
+      "monophonic_tracks": ["pulse1", "pulse2", "triangle", "noise"],
+      "max_events_per_bar": 32,
+      "pitch_ranges": {
+        "pulse1": {"min": 48, "max": 96},
+        "pulse2": {"min": 48, "max": 96},
+        "triangle": {"min": 24, "max": 60},
+        "noise": {"min": 0, "max": 127}
+      },
+      "velocity_levels": [64, 100, 127],
+      "forbid_overflow": true
+    },
+    "soft": {
+      "target_density_per_bar": 8.0,
+      "target_repetition": 0.3,
+      "prefer_step_grid": 4,
+      "style_tags": ["8bit", "nes", "chiptune", "retro"]
+    }
+  },
+  "tracks": [
+    {"id": "pulse1", "role": "melody", "monophonic": true, "program": 80},
+    {"id": "pulse2", "role": "harmony", "monophonic": true, "program": 80},
+    {"id": "triangle", "role": "bass", "monophonic": true, "program": 38},
+    {"id": "noise", "role": "drums", "monophonic": true, "program": 0}
+  ],
+  "composition": {
+    "default_tempo": 140,
+    "default_key": "C",
+    "default_time_signature": "4/4",
+    "steps_per_beat": 4,
+    "typical_length_bars": 16
+  },
+  "scales": {
+    "C": [0, 2, 4, 5, 7, 9, 11],
+    "Cm": [0, 2, 3, 5, 7, 8, 10],
+    "C_penta": [0, 2, 4, 7, 9],
+    "Cm_penta": [0, 3, 5, 7, 10]
+  }
+}

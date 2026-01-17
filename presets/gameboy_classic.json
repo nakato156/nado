@@ -1,0 +1,39 @@
+{
+  "name": "gameboy_classic",
+  "description": "Estilo Game Boy clásico - más limitado que NES",
+  "constraints": {
+    "schema_version": "constraints.v1",
+    "hard": {
+      "required_tracks": ["pulse1", "wave", "noise"],
+      "monophonic_tracks": ["pulse1", "pulse2", "wave", "noise"],
+      "max_events_per_bar": 24,
+      "pitch_ranges": {
+        "pulse1": {"min": 36, "max": 84},
+        "pulse2": {"min": 36, "max": 84},
+        "wave": {"min": 24, "max": 72},
+        "noise": {"min": 0, "max": 127}
+      },
+      "velocity_levels": [80, 127],
+      "forbid_overflow": true
+    },
+    "soft": {
+      "target_density_per_bar": 6.0,
+      "target_repetition": 0.4,
+      "prefer_step_grid": 4,
+      "style_tags": ["gameboy", "8bit", "handheld", "lo-fi"]
+    }
+  },
+  "tracks": [
+    {"id": "pulse1", "role": "melody", "monophonic": true, "program": 80},
+    {"id": "pulse2", "role": "harmony", "monophonic": true, "program": 80},
+    {"id": "wave", "role": "bass", "monophonic": true, "program": 38},
+    {"id": "noise", "role": "drums", "monophonic": true, "program": 0}
+  ],
+  "composition": {
+    "default_tempo": 120,
+    "default_key": "C",
+    "default_time_signature": "4/4",
+    "steps_per_beat": 4,
+    "typical_length_bars": 8
+  }
+}

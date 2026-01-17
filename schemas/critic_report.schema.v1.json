@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/critic_report.schema.v1.json",
+  "title": "Critic Report Schema v1",
+  "type": "object",
+  "required": ["schema_version", "window", "agent", "rankings", "metrics", "hints"],
+  "properties": {
+    "schema_version": { "const": "critic_report.v1" },
+
+    "window": {
+      "type": "object",
+      "required": ["bar_index", "start_step", "end_step"],
+      "properties": {
+        "bar_index": { "type": "integer", "minimum": 0 },
+        "start_step": { "type": "integer", "minimum": 0 },
+        "end_step": { "type": "integer", "minimum": 1 }
+      }
+    },
+
+    "agent": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+
+    "rankings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["variant_id", "score", "passed_hard_constraints"],
+        "properties": {
+          "variant_id": { "type": "string" },
+          "score": { "type": "number" },
+          "passed_hard_constraints": { "type": "boolean" },
+          "reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+
+    "metrics": {
+      "type": "object",
+      "required": ["density", "repetition", "rhythm_entropy", "range_violations"],
+      "properties": {
+        "density": { "type": "number", "minimum": 0.0 },
+        "repetition": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "rhythm_entropy": { "type": "number", "minimum": 0.0 },
+        "range_violations": { "type": "integer", "minimum": 0 },
+        "polyphony_violations": { "type": "integer", "minimum": 0 },
+        "style_compliance": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "additionalProperties": true
+    },
+
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["priority", "message", "target"],
+        "properties": {
+          "priority": { "type": "string", "enum": ["low", "medium", "high"] },
+          "message": { "type": "string" },
+          "target": {
+            "type": "object",
+            "required": ["track"],
+            "properties": {
+              "track": { "type": "string" },
+              "bar_index": { "type": "integer", "minimum": 0 },
+              "start_step": { "type": "integer", "minimum": 0 },
+              "end_step": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
